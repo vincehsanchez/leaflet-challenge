@@ -13,11 +13,11 @@ const eqData =
     //const eqCoordinates = eqFeatures.geometry;
     //^^why no show geometry..because of the objects!^^
     //so we need to get each feature first...
-    eqFeatures.forEach(feature => {
-        const eqGeometry = feature.geometry;
-
-
-    });//for eqFeatures.forEach
+        eqFeatures.forEach(feature => {
+        const eqGeometry = feature.geometry.coordinates;
+        console.log(eqGeometry);//works!
+        //^^second object so we will include in one go...^^
+        });//for eqFeatures.forEach to get geometry
     });
 };
 init();
