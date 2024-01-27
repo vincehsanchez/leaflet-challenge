@@ -14,8 +14,13 @@ const eqData =
     //^^why no show geometry..because of the objects!^^
     //so we need to get each feature first...
         eqFeatures.forEach(feature => {
-        const eqGeometry = feature.geometry.coordinates;
-        console.log(eqGeometry);//works!
+        const eqCoordinates = feature.geometry.coordinates;
+        console.log(eqCoordinates);//works!
+        const [eqLoggy, eqLatty] = feature.geometry.coordinates;
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+        //^array destructering^^
+        console.log(`Longitude:${eqLoggy}, Latitude:${eqLatty}`);//gotta use backticks!!
+
         //^^second object so we will include in one go...^^
         });//for eqFeatures.forEach to get geometry
     });
