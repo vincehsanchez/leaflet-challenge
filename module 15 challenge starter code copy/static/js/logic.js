@@ -26,12 +26,13 @@ function init(){
         });//for eqFeatures.forEach to get coordinates
     });//for d3.son(eqData)
     // Create a map object, and set the default layers.
-    const eqMap = L.map("map" //{
+    const eqMap = L.map("map", {
         //^^leaflet is active, but no map yet...^^
-        //center: [46.2276, 2.2137],
-        //zoom: 6,
+        center: [46.2276, 2.2137],
+        zoom: 6,
+        //^^map shows after adding center and zoom^^
         //layers: [street, cityLayer]
-    );//} closes const eqMap
+    });// closes const eqMap
     // Define variables for our tile layers.
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
