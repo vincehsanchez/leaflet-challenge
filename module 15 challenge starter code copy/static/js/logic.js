@@ -39,9 +39,8 @@ function init(){
       }).addTo(eqMap);
     //we need markers and we have longs, lats, and mag..
     //remeber you put latty first before loggy!!
-    const eqMarkers = L.marker([eqLatty, eqLoggy], {
-        .bindPopup(`<h1>${city.name}</h1> <hr> <h3>Population ${city.population.toLocaleString()}</h3>`)
-    .addTo(myMap);
-    }).addTo(myMap);
+    const eqMarkers = L.marker([eqLatty, eqLoggy]).addTo(eqMap)
+        .bindPopup(`Magnitude: ${eqMagnitude}`)//use backticks!!
+    ;//closes eqMarkers
 };//for init
 init();
