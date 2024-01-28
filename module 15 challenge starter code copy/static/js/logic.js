@@ -12,6 +12,9 @@ function init(){
     //lets find coordinates
     //const eqCoordinates = eqFeatures.geometry;
     //^^why no show geometry..because of the objects!^^
+    //we need to group all markers to use getBounds and fitBounds
+    const eqMarkers = L.featureGroup();
+    //https://leafletjs.com/reference.html#featuregroup
     //so we need to get each feature first...
         eqFeatures.forEach(feature => {
         const eqCoordinates = feature.geometry.coordinates;
@@ -37,16 +40,11 @@ function init(){
         eqMarkers.addTo(eqMap);
         eqMap.fitBounds(eqMarkers.getBounds());
         //https://leafletjs.com/reference.html#map-fitbounds
-        //^^why undefined?^^
+        //^^why undefined?..needed featureGroup()^^
+        //^^works and super handy^^
     });//for d3.son(eqData)
     // Create a map object, and set the default layers.
-    const eqMap = L.map("map", {
-        //^^leaflet is active, but no map yet...^^
-        center: [46.2276, 2.2137],
-        zoom: 6,
-        //^^map shows after adding center and zoom^^
-        //layers: [street, cityLayer]
-    });// closes const eqMap
+    const eqMap = L.map("map");
     // Define variables for our tile layers.
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
