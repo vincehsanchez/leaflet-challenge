@@ -1,6 +1,6 @@
 function init(){
-const eqData = 
-"https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
+    const eqData = 
+    "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
     // Fetch the JSON data and console log it
     d3.json(eqData).then(function(data) {
     //lets show some stuff
@@ -25,5 +25,11 @@ const eqData =
         console.log(`Magnitude: ${eqMagnitude}`);//works!!
         });//for eqFeatures.forEach to get coordinates
     });//for d3.son(eqData)
+    // Create a map object, and set the default layers.
+    let eqMap = L.map("map", {
+        center: [46.2276, 2.2137],
+        zoom: 6,
+        layers: [street, cityLayer]
+    });
 };//for init
 init();
