@@ -27,9 +27,14 @@ function init(){
     });//for d3.son(eqData)
     // Create a map object, and set the default layers.
     const eqMap = L.map("map" //{
+        //^^leaflet is active, but no map yet...^^
         //center: [46.2276, 2.2137],
         //zoom: 6,
         //layers: [street, cityLayer]
     );//} closes const eqMap
+    // Define variables for our tile layers.
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(eqMap);
 };//for init
 init();
