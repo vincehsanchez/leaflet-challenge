@@ -38,9 +38,10 @@ function init(){
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(eqMap);
     //we need markers and we have longs, lats, and mag..
-    const marker = L.marker([45.52, -122.67], {
-        draggable: true,
-        title: "My First Marker"
+    //remeber you put latty first before loggy!!
+    const eqMarkers = L.marker([eqLatty, eqLoggy], {
+        .bindPopup(`<h1>${city.name}</h1> <hr> <h3>Population ${city.population.toLocaleString()}</h3>`)
+    .addTo(myMap);
     }).addTo(myMap);
 };//for init
 init();
