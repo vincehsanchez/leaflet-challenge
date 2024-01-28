@@ -23,7 +23,21 @@ function init(){
         //^array destructering^^
         console.log(`Longitude:${eqLoggy}, Latitude:${eqLatty}`);//gotta use backticks!!!
         console.log(`Magnitude: ${eqMagnitude}`);//works!!
+        //we need markers and we have longs, lats, and mag..
+        //remeber you put latty first before loggy!!
+        const eqMarker = L.marker([eqLatty, eqLoggy]).addTo(eqMap)
+            .bindPopup(`Magnitude: ${eqMagnitude}`);//dont forget backticks!!
+        //^^Uncaught ReferenceError: eqLatty is not defined^^
+        //^^maybe we can nest this in forEach function^^
+        //^^works!!^^
+        //we need to make it callable first
+        eqMarkers.addLayer(eqMarker);
         });//for eqFeatures.forEach to get coordinates
+        //lets try centering it..
+        eqMarkers.addTo(eqMap);
+        eqMap.fitBounds(eqMarkers.getBounds());
+        //https://leafletjs.com/reference.html#map-fitbounds
+        //^^why undefined?^^
     });//for d3.son(eqData)
     // Create a map object, and set the default layers.
     const eqMap = L.map("map", {
@@ -37,10 +51,5 @@ function init(){
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(eqMap);
-    //we need markers and we have longs, lats, and mag..
-    //remeber you put latty first before loggy!!
-    const eqMarkers = L.marker([eqLatty, eqLoggy]).addTo(eqMap)
-        .bindPopup(`Magnitude: ${eqMagnitude}`)//use backticks!!
-    ;//closes eqMarkers
 };//for init
 init();
