@@ -26,10 +26,10 @@ function init(){
         });//for eqFeatures.forEach to get coordinates
     });//for d3.son(eqData)
     // Create a map object, and set the default layers.
-    let eqMap = L.map("map", {
-        center: [46.2276, 2.2137],
-        zoom: 6,
-        layers: [street, cityLayer]
-    });
+    const eqMap = L.map("map" //{
+        //center: [46.2276, 2.2137],
+        //zoom: 6,
+        //layers: [street, cityLayer]
+    );//} closes const eqMap
 };//for init
 init();
