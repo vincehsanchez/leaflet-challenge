@@ -24,6 +24,6 @@ const eqData =
         console.log(`Longitude:${eqLoggy}, Latitude:${eqLatty}`);//gotta use backticks!!!
         console.log(`Magnitude: ${eqMagnitude}`);//works!!
         });//for eqFeatures.forEach to get coordinates
-    });
-};
+    });//for d3.son(eqData)
+};//for init
 init();
