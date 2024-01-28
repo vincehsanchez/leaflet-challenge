@@ -37,5 +37,10 @@ function init(){
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(eqMap);
+    //we need markers and we have longs, lats, and mag..
+    const marker = L.marker([45.52, -122.67], {
+        draggable: true,
+        title: "My First Marker"
+    }).addTo(myMap);
 };//for init
 init();
