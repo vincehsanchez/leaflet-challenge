@@ -88,12 +88,13 @@ legend.onAdd = function(map) {
     for (let i = 0; i < depths.length; i++) {
         labels.push(
             '<i style="background:' + colors[i] + '"></i> ' +
-            depths[i] + (depths[i + 1] ? '&ndash;' + depths[i + 1] + '<br>' : '+'));
+            depths[i] + (i < depths.length -1 ? '&ndash;' + depths[i + 1] + '<br>' : '+'));
     }
     div.innerHTML = legendInfo + "<ul>" + labels.join("") + "</ul>";
     return div;
 };
 // Adding the legend to the map
 legend.addTo(eqMap);//so close..no color boxes..
+//^^we need to use the css file to do it..hopefully^^
 };//for init
 init();
