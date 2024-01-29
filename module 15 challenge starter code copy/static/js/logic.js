@@ -34,12 +34,12 @@ function init(){
             //^array destructering^^
             console.log(`Longitude:${eqLoggy}, Latitude:${eqLatty}`);//gotta use backticks!!!
             console.log(`Magnitude: ${eqMagnitude}`);//works!!
-            const eqSize = (eqMagnitude*1000);
+            const eqSize = (eqMagnitude*20000);//circles did not look big enough...50k too much
             //we need markers and we have longs, lats, and mag..
             //remeber you put latty first before loggy!!
             const eqCircle = L.circle([eqLatty, eqLoggy], {
                 color: 'green',
-                fillOpacity: 1.0,
+                fillOpacity: 0.1,//color was too dark...
                 radius: eqSize
                 //^^eqSize not defined^^
             }).bindPopup(`Magnitude: ${eqMagnitude}`);//dont forget backticks!!
