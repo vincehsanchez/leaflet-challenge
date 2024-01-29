@@ -74,28 +74,25 @@ function init(){
         //^^why undefined?..needed featureGroup()^^
         //^^works and super handy^^
     });//for d3.son(eqData)
-    // Set up the legend.
-    const legend = L.control({ position: "bottomright" });
-    legend.onAdd = function(eqMap) {
-        const div = L.DomUtil.create("div", "info legend");
-        const limits = [0,10,30,50,70,90];
-        const colors = ["green", "greenyellow","yellow","orange","tomato", "red"];
-        const labels = [];
-        //title legend
-        let legendInfo = "<h1>Earthquake Depth</h1>";
-        //make a legend
-        for(let i)
-
-        div.innerHTML = legendInfo;
-
-        limits.forEach(function(limit, index) {
-        labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
-        });
-
-        div.innerHTML += "<ul>" + labels.join("") + "</ul>";
-        return div;
-    };
-  // Adding the legend to the map
-  legend.addTo(myMap);
+// Set up the legend.
+const legend = L.control({ position: "bottomright" });
+legend.onAdd = function(eqMap) {
+    const div = L.DomUtil.create("div", "info legend");
+    const depths = [0, 10, 30, 50, 70, 90];
+    const colors = ["green", "greenyellow", "yellow", "orange", "tomato", "red"];
+    const labels = [];
+    // Title for the legend
+    let legendInfo = "<h4>Earthquake Depth</h4>";
+    // Create the color scale for the legend
+    for (let i = 0; i < depths.length; i++) {
+        labels.push(
+            '<i style="background:' + colors[i] + '"></i> ' +
+            depths[i] + (depths[i + 1] ? '&ndash;' + depths[i + 1] + '<br>' : '+'));
+    }
+    div.innerHTML = legendInfo + "<ul>" + labels.join("") + "</ul>";
+    return div;
+};
+// Adding the legend to the map
+legend.addTo(eqMap);//so close..no color boxes..
 };//for init
 init();
