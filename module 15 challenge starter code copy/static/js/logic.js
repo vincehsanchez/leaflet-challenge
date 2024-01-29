@@ -1,6 +1,10 @@
 function init(){
     // order matters, we need to create map, and call layers.
     const eqMap = L.map("map");
+    // Define variables for our tile layers.
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(eqMap);
     const eqData = 
     "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
     // Fetch the JSON data and console log it
@@ -50,11 +54,5 @@ function init(){
         //^^why undefined?..needed featureGroup()^^
         //^^works and super handy^^
     });//for d3.son(eqData)
-    
-
-    // Define variables for our tile layers.
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(eqMap);
 };//for init
 init();
