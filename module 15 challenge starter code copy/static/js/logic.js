@@ -44,13 +44,14 @@ function init(){
         eqFeatures.forEach(feature => {
             const eqCoordinates = feature.geometry.coordinates;
             const eqMagnitude = feature.properties.mag;
+            const eqPlace = feature.properties.place
             console.log(eqCoordinates);//works!
             console.log(eqMagnitude);
             //since we need depth we can piggy back off here..
             const [eqLoggy, eqLatty, eqDepth] = feature.geometry.coordinates;
             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
             //^array destructering^^
-            console.log(`Longitude:${eqLoggy}, Latitude:${eqLatty}, Depth:${eqDepth}`);//gotta use backticks!!!
+            console.log(`Longitude:${eqLoggy}, Latitude:${eqLatty}, Depth:${eqDepth}, Place:${eqPlace}`);//gotta use backticks!!!
             console.log(`Magnitude: ${eqMagnitude}`);//works!!
             const eqSize = (eqMagnitude*20000);//circles did not look big enough...50k too much
             //we need markers and we have longs, lats, and mag..
@@ -60,7 +61,7 @@ function init(){
                 fillOpacity: 0.1,//1.0 was too dark...
                 radius: eqSize
                 //^^eqSize not defined^^
-            }).bindPopup(`Magnitude: ${eqMagnitude}`);//dont forget backticks!!
+            }).bindPopup(`Magnitude: ${eqMagnitude}, Coordinates:(${eqLatty},${eqLoggy}), Depth:${eqDepth}, Place:${eqPlace}`);//dont forget backticks!!
         //^^Uncaught ReferenceError: eqLatty is not defined^^
         //^^maybe we can nest this in forEach function^^
         //^^works!!^^
@@ -76,7 +77,7 @@ function init(){
     });//for d3.son(eqData)
 // Set up the legend.
 const legend = L.control({ position: "bottomright" });
-legend.onAdd = function(eqMap) {
+legend.onAdd = function(map) {
     const div = L.DomUtil.create("div", "info legend");
     const depths = [0, 10, 30, 50, 70, 90];
     const colors = ["green", "greenyellow", "yellow", "orange", "tomato", "red"];
