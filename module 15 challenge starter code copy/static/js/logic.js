@@ -9,6 +9,24 @@ function init(){
     }).addTo(eqMap);
     const eqData = 
     "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
+    //to add the depth we would need to have a scale of six colors...
+    function colorEmUp(eqDepth) {
+        if (eqDepth < 10) {
+            return "green";
+        } else if (eqDepth < 30) {
+            return "somecoloe";
+        } else if (eqDepth < 50) {
+            return "somecolro";
+        } else if (eqDepth < 70) {
+        
+        } else if (eqDepth < 90) {}
+        
+        } else {
+            return "red";
+        } 
+            )
+    };//function colorEmUp
+
     // Fetch the JSON data and console log it
     d3.json(eqData).then(function(data) {
         //lets show some stuff
@@ -39,7 +57,7 @@ function init(){
             //remeber you put latty first before loggy!!
             const eqCircle = L.circle([eqLatty, eqLoggy], {
                 color: 'green',
-                fillOpacity: 0.1,//color was too dark...
+                fillOpacity: 0.1,//1.0 was too dark...
                 radius: eqSize
                 //^^eqSize not defined^^
             }).bindPopup(`Magnitude: ${eqMagnitude}`);//dont forget backticks!!
