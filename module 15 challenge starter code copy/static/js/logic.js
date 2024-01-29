@@ -10,23 +10,22 @@ function init(){
     const eqData = 
     "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
     //to add the depth we would need to have a scale of six colors...
-    function colorEmUp(eqDepth) {
-        if (eqDepth < 10) {
+    //https://developer.mozilla.org/en-US/docs/Web/CSS/named-color
+    function colorEmUp(eqDepths) {
+        if (eqDepths < 10) {
             return "green";
-        } else if (eqDepth < 30) {
-            return "somecoloe";
-        } else if (eqDepth < 50) {
-            return "somecolro";
-        } else if (eqDepth < 70) {
-        
-        } else if (eqDepth < 90) {}
-        
+        } else if (eqDepths < 30) {
+            return "greenyellow";
+        } else if (eqDepths < 50) {
+            return "yellow";
+        } else if (eqDepths < 70) {
+            return "orange";
+        } else if (eqDepths < 90) {
+            return "tomato";
         } else {
             return "red";
         } 
-            )
-    };//function colorEmUp
-
+    };//close function colorEmUp
     // Fetch the JSON data and console log it
     d3.json(eqData).then(function(data) {
         //lets show some stuff
@@ -47,16 +46,17 @@ function init(){
             const eqMagnitude = feature.properties.mag;
             console.log(eqCoordinates);//works!
             console.log(eqMagnitude);
-            const [eqLoggy, eqLatty] = feature.geometry.coordinates;
+            //since we need depth we can piggy back off here..
+            const [eqLoggy, eqLatty, eqDepth] = feature.geometry.coordinates;
             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
             //^array destructering^^
-            console.log(`Longitude:${eqLoggy}, Latitude:${eqLatty}`);//gotta use backticks!!!
+            console.log(`Longitude:${eqLoggy}, Latitude:${eqLatty}, Depth:${eqDepth}`);//gotta use backticks!!!
             console.log(`Magnitude: ${eqMagnitude}`);//works!!
             const eqSize = (eqMagnitude*20000);//circles did not look big enough...50k too much
             //we need markers and we have longs, lats, and mag..
             //remeber you put latty first before loggy!!
             const eqCircle = L.circle([eqLatty, eqLoggy], {
-                color: 'green',
+                color: colorEmUp(eqDepth),//now we use colorEmUp
                 fillOpacity: 0.1,//1.0 was too dark...
                 radius: eqSize
                 //^^eqSize not defined^^
@@ -74,5 +74,28 @@ function init(){
         //^^why undefined?..needed featureGroup()^^
         //^^works and super handy^^
     });//for d3.son(eqData)
+    // Set up the legend.
+    const legend = L.control({ position: "bottomright" });
+    legend.onAdd = function(eqMap) {
+        const div = L.DomUtil.create("div", "info legend");
+        const limits = [0,10,30,50,70,90];
+        const colors = ["green", "greenyellow","yellow","orange","tomato", "red"];
+        const labels = [];
+        //title legend
+        let legendInfo = "<h1>Earthquake Depth</h1>";
+        //make a legend
+        for(let i)
+
+        div.innerHTML = legendInfo;
+
+        limits.forEach(function(limit, index) {
+        labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
+        });
+
+        div.innerHTML += "<ul>" + labels.join("") + "</ul>";
+        return div;
+    };
+  // Adding the legend to the map
+  legend.addTo(myMap);
 };//for init
 init();
