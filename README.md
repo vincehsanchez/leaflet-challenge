@@ -13,14 +13,7 @@ Follow this link it shows earthquakes from the past seven days:
 
 https://vincehsanchez.github.io/leaflet-challenge/
 
-
-Files
-
-Download the following files to help you get started:
-Module 15 Challenge files Links to an external site.
-Instructions
-
-2-BasicMap
+### Earthquake Map and General Characteristics
 
 Your first task is to visualize an earthquake dataset. Complete the following steps:
 Get your dataset. To do so, follow these steps:
