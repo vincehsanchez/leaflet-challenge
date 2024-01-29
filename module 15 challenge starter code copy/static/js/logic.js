@@ -26,15 +26,20 @@ function init(){
         //^array destructering^^
         console.log(`Longitude:${eqLoggy}, Latitude:${eqLatty}`);//gotta use backticks!!!
         console.log(`Magnitude: ${eqMagnitude}`);//works!!
+        const eqSize = eqMagnitude;
         //we need markers and we have longs, lats, and mag..
         //remeber you put latty first before loggy!!
-        const eqMarker = L.marker([eqLatty, eqLoggy]).addTo(eqMap)
-            .bindPopup(`Magnitude: ${eqMagnitude}`);//dont forget backticks!!
+        const eqCircle = L.circle([eqLatty, eqLoggy], {
+            color: 'green',
+            fillOpacity: 1.0,
+            radius: eqSize
+            //^^eqSize not defined^^
+        }).bindPopup(`Magnitude: ${eqMagnitude}`);//dont forget backticks!!
         //^^Uncaught ReferenceError: eqLatty is not defined^^
         //^^maybe we can nest this in forEach function^^
         //^^works!!^^
         //we need to make it callable first
-        eqMarkers.addLayer(eqMarker);
+        eqMarkers.addLayer(eqCircle);
         });//for eqFeatures.forEach to get coordinates
         //lets try centering it..
         eqMarkers.addTo(eqMap);
